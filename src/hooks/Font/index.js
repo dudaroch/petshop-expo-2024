@@ -15,12 +15,11 @@ export function FontProvider({children}) {
     });
 
     if (!loaded && !error) {
-        return (
+        return 
         <View style={{flex: 1, justifyContent: "center", alignItems: "center" }}>
-            <Text style={{fontFamily: "bold"}}> Carregando as Fontes </Text>
+            <Text style={{fontFamily: ""}}> Carregando as Fontes </Text>
         <ActivityIndicator />;
         </View>
-        );
       }
 
     return <FontContext.Provider value={{}}>

@@ -15,14 +15,15 @@ export function FontProvider({children}) {
     });
 
     if (!loaded && !error) {
-        return 
+        return (
         <View style={{flex: 1, justifyContent: "center", alignItems: "center" }}>
-            <Text style={{fontFamily: ""}}> Carregando as Fontes </Text>
-        <ActivityIndicator />;
+            <Text style={{fontSize: 28, marginTop: 15, }}> Carregando as Fontes </Text>
+        <ActivityIndicator size="large" color="black" />
         </View>
+        );
       }
 
-    return <FontContext.Provider value={{}}>
+    return <FontContext.Provider value={{loaded}}>
         {children}
     </FontContext.Provider>;
 }

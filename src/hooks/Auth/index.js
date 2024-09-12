@@ -1,24 +1,29 @@
-import { createContext } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
-
-const AuthProvider = createContext({});
+const AuthContext = createContext({})
 
 export function AuthProvider({children}) {
     const [user, setUser] = useState({});
 
-    const signIn = ({email, password}) => {
+    const signIn = async ({email, password}) => {
         setUser({id: 1, name: "usuário 1", email});
-    }
+    };
 
-    const signOut = () => {
+    const signOut = async () => {
         setUser({});
     };
 
+    useEffect (() => {
+        console.log('AuthProvider: ', user);
+    }, user)
+
     return (
-        <AuthProvider.Provider value={{user, signIn, signOut}}>
-            {children}
-        </AuthProvider.Provider>
-    )
+    <AuthContext.Provider value={{user, signIn, signOut}}>
+        {children} 
+    </AuthContext.Provider>
+    );
+    
+    
 }
 
 export function useAuth() {
@@ -26,5 +31,6 @@ export function useAuth() {
     if (!context) {
         throw new Error("useAuth must be used within an AuthProvider");
     }
+
     return context;
 }

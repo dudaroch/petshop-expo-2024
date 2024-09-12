@@ -13,9 +13,6 @@ export function AuthProvider({children}) {
         setUser({});
     };
 
-    useEffect (() => {
-        console.log('AuthProvider: ', user);
-    }, user)
 
     return (
     <AuthContext.Provider value={{user, signIn, signOut}}>

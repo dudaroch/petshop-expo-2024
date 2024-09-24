@@ -1,3 +1,4 @@
+import { router } from "expo-router";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext({});

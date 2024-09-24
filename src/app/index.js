@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, BackHandler } from "react-native";
 import { useAuth } from "../hooks/Auth";
 import { router } from "expo-router";
 
@@ -8,30 +8,33 @@ export default function App() {
 
   const handleEntrarSuper = async () => {
     try {
-      await signIn({ email: "super@email.com", password: "Super123!" });
-      router.replace("/");
+      await signIn({ email: "super@email.com", password: "Super123!" }) 
     } catch (error) {
-      console.log(e);
+      console.log(e)
     }
-  };
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Aplicativo Pronto para Usar</Text>
-      <Button title="SignIn Super" onPress={handleEntrarSuper} />
-
       <Button
-        title="SignIn Adm"
-        onPress={() => signIn({ email: "adm@email.com", password: "Adm123!" })}
+        title="Signin Super"
+        onPress={handleEntrarSuper}
       />
-
       <Button
-        title="SignIn User"
+        title="Signin Adm"
+        onPress={() =>
+          signIn({ email: "adm@email.com", password: "Adm123!" })
+        }
+      />
+      <Button
+        title="Signin User"
         onPress={() =>
           signIn({ email: "user@email.com", password: "User123!" })
         }
       />
-
-      <Button title="SignOut" onPress={() => signOut()} />
+      <Button title="Sobre" onPress={()=> router.push("/about")} />
+      <Button title="Sair do Aplicativo" onPress={() => BackHandler.exitApp()} />
       <StatusBar style="auto" />
     </View>
   );
@@ -43,9 +46,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    gap: 15,
   },
   title: {
-    fontFamily: "light",
+    fontFamily: "fonte1",
     fontSize: 20,
   },
 });
